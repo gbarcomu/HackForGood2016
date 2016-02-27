@@ -13,7 +13,7 @@ En cuanto a la aplicación Polymer, basta con acceder a la ruta raíz del proyec
 python -m SimpleHTTPServer 8080. Posteriormente, en el navegador, introducimos la dirección localhost:8080.
 
 Desarrolladores:
-Guillermo Barco Muñoz
-Jairo Costa Barriga
-Fernando Díaz González
-Luis Rey Sánchez
+Guillermo Barco Muñoz -
+Jairo Costa Barriga -
+Fernando Díaz González -
+Luis Rey Sánchez -
