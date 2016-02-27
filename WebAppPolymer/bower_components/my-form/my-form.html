@@ -1,0 +1,68 @@
+<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<dom-module id="my-form">
+	<style>
+		:host {
+			font-family: "Archivo Narrow", Arial, Helvetica, sans-serif;
+		}
+	</style>
+	<template>
+		<link rel="stylesheet" href="main.css">
+		<div class="content-wrap clearfix">
+			<div class="content-header">
+				<h2 class="content-header-title">Enviar Incidencia</h2>
+			</div>
+			<div class="content-block">
+				<form id="edit-story" method="post" action="http://localhost:8080/JsonRest/rest/json/fooInstance/post">
+					<div class="form-group">
+						<label class="field-label" for="email">Email</label>
+						<input class="field-input" id="email" type=email name="email">
+					</div>
+					<div class="form-group">
+						<label class="field-label" for="latitud">Latitud</label>
+						<input class="field-input" id="latitud" type=number name="latitud">
+					</div>
+					<div class="form-group">
+						<label class="field-label" for="longitud">Longitud</label>
+						<input class="field-input" id="longitud" type=number name="longitud">
+					</div>
+					<div class="form-group">
+						<label class="field-label" for="threat-category">Categoría</label>
+						<select class="field-input" id="threat-category" name="threat-category">
+							<option value="disturbio">Disturbio por Alcohol</option>
+							<option value="pelea">Pelea</option>
+							<option value="grupo">Grupo conflictivo</option>
+							<option value="robo">Robo</option>
+							<option value="drogas">Venta de Drogas</option>
+							<option value="fuego">Fuego</option>
+							<option value="obra">Obra</option>
+							<option value="otra">Otra</option>
+						</select>
+						<span>Si no concuerda con ninguna, selecciona "Otra"</span>
+					</div>
+					<div class="form-group">
+						<label class="field-label textarea-label" for="story-content">
+							Resumen
+						</label>
+						<textarea id="story-content" name="story-content"></textarea>
+					</div>
+					<div class="form-group last">
+						<div class="subgroup-left"></div>
+						<div class="subgroup-right">
+							<input class="button-action" type="submit" value="Enviar Incidencia">
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: "my-form",
+		properties: {},
+		ready: function () {}
+	});
+</script>

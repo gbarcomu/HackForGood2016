@@ -1,0 +1,782 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+/****************************************************************************
+ ***************************** ESTILOS GENERALES ****************************
+ ****************************************************************************/
+
+* {
+    /* No quiero que se cuente el borde en los tamaños de las cajas. */
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Roman';
+    src: url("../fonts/Roman/Roman.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url("../fonts/Oswald/Oswald-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Archivo Narrow';
+    src: url("../fonts/Archivo_Narrow/ArchivoNarrow-Regular.ttf") format("truetype");
+}
+
+body {
+    font-family: "Archivo Narrow", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    line-height: 1.66;
+    color: #636E75;
+    background-image: url("../img/swirl_pattern.png");
+    background-repeat: repeat;
+}
+
+.content-wrap {
+    /* Contiene el "contenido" de la página, incluido el aside. */
+    max-width: 1000px;
+    /* Lo centramos. */
+    margin: 30px auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: #67A0FF;
+}
+
+a:hover,
+a:active {
+    color: #636E75;
+}
+
+.alt-link-color a:link,
+.alt-link-color a:visited {
+    color: #636E75;
+}
+
+.alt-link-color a:hover,
+.alt-link-color a:active {
+    color: #67A0FF;
+}
+
+main {
+    float: left;
+    width: 66%;
+    margin-right: 2%;
+    margin-left: 1%;
+    /* Queda 31% para el aside. */
+}
+
+#stories {
+    border-bottom: 1px solid #E4ECEF;
+}
+
+.content-header {
+    position: relative;
+    border: 1px solid #E4ECEF;
+    border-radius: 3px 3px 0px 0px;
+    background: #FAFBFC;
+}
+
+.content-header-title {
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    margin: 0;
+}
+
+.content-header-title span {
+    position: relative;
+    bottom: 3px;
+}
+
+.content-header + .entry {
+    /* La primera entrada la pegamos al encabezado. */
+    margin-top: 0;
+    border-top: 0;
+}
+
+.entry {
+    position: relative;
+    padding: 20px 15px 18px 54px;
+    margin-top: 3px;
+    border: 1px solid #E4ECEF;
+    background: white;
+}
+
+.entry.my-entry {
+    padding: 20px 15px 18px 20px;
+}
+
+.entry.editing-entry {
+    padding: 0px 15px 18px 15px;
+    border: none;
+}
+
+.entry-thumb {
+    /* Thumbnail. */
+    float: right;
+    max-width: 120px;
+    margin: 5px 0 0px 10px;
+    border-radius: 2px;
+}
+
+.entry-title {
+    font-size: 1.3em;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    color: #67A0FF;
+}
+
+.entry-submitter-info {
+    font-size: 0.9em;
+    padding: 0;
+    margin: 3px 0 0;
+    color: #838E94;
+}
+
+.entry-body {
+    margin: 8px 0 0;
+}
+
+.entry-vote-buttons {
+    list-style: none;
+    position: absolute;
+    left: -6px;
+    top: 25px;
+    font-size: 1.1em;
+    width: 45px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0px 3px 3px 0px;
+}
+
+.entry-vote-buttons::before {
+    /* 
+     * Esto es un truco que he aprendido de la web CSS tricks. Si le ponemos bordes a un elemento vacío, * *e * estos adquieren la forma de un triángulo. 
+     */
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border: 5px solid;
+    border-color: transparent cadetblue transparent transparent;
+}
+
+.entry-vote-buttons > li {
+    position: absolute;
+    /* Para asegurarnos que todos los botones ocupen los mismo. */
+    width: 100%;
+    text-align: center;
+}
+
+.entry-vote-buttons > li:nth-child(1) {
+    top: 0;
+    border: 0;
+    /* A pesarde no tener bordes, se redondea "el borde". */
+    border-radius: 0px 3px 0px 0px;
+    background: #67A0FF;
+}
+
+.entry-vote-buttons > li:nth-child(1):hover {
+    background: #8DB7FF;
+}
+
+.entry-vote-buttons > li:nth-child(2) {
+    top: 42px;
+    border-left: 1px solid #E4ECEF;
+    border-right: 1px solid #E4ECEF;
+    background: #F8FCFC;
+}
+
+.entry-vote-buttons > li:nth-child(3) {
+    top: 84px;
+    border: 1px solid #E4ECEF;
+    border-radius: 0px 0px 3px 3px;
+    background: #F8FCFC;
+}
+
+.entry-vote-buttons > li:nth-child(2):hover,
+.entry-vote-buttons > li:nth-child(3):hover {
+    background: white;
+}
+
+.entry-vote-buttons li:first-child a {
+    color: white;
+}
+
+.entry-vote-buttons li a {
+    /* Importante para que el enlace ocupe todo el div. */
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 0;
+}
+
+.entry-social-buttons {
+    display: block;
+    margin: 7px 0 0;
+}
+
+.entry-social-buttons li {
+    float: left;
+    margin-right: 50px;
+}
+
+.entry-social-buttons li:nth-child(1) {
+    margin-left: 0px;
+}
+
+
+/****************************************************************************
+ **************************** ESTILOS FORMULARIOS ***************************
+ ****************************************************************************/
+
+button,
+input,
+select,
+textarea {
+    color: #636E75;
+}
+
+select,
+input,
+textarea {
+    border: 1px solid #D9E4E9;
+    border-radius: 0px 3px 3px 0px;
+    box-shadow: 0 0 1px #A6ACAF inset;
+    background: white;
+}
+
+input,
+textarea {
+    padding: 5px;
+}
+
+textarea {
+    width: 100%;
+}
+
+select {
+    max-width: 180px;
+    margin-right: calc(80% - 180px)
+}
+
+.content-block {
+    padding: 20px 15px;
+    border-right: 1px solid #E4ECEF;
+    border-bottom: 1px solid #E4ECEF;
+    border-left: 1px solid #E4ECEF;
+    border-radius: 0px 0px 3px 3px;
+    background: white;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+textarea:focus {
+    box-shadow: 0 0 10px #67A0FF;
+}
+
+form {
+    max-width: 400px;
+    /* Para centrarlo. */
+    margin: 0 auto;
+}
+
+form#edit-story {
+    max-width: 800px;
+}
+
+.form-group {
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.form-group:before,
+.form-group:after {
+    /* Para evitar la clase clearfix en todos. */
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.subgroup-left {
+    float: left;
+    width: 40%;
+    padding: 10px 10px 10px 0;
+}
+
+.subgroup-right {
+    float: left;
+    width: 60%;
+}
+
+.field-label {
+    float: left;
+    width: 40%;
+    height: 48px;
+    padding: 10px;
+    border-top: 1px solid #D9E4E9;
+    border-bottom: 1px solid #D9E4E9;
+    border-left: 1px solid #D9E4E9;
+    border-radius: 3px 0px 0px 3px;
+    background: #FAFBFC;
+}
+
+#edit-story .field-label {
+    width: 20%;
+}
+
+.check-label {
+    position: relative;
+    bottom: 2px;
+}
+
+.textarea-label {
+    margin-bottom: 7px;
+    border-right: 1px solid #D9E4E9;
+    border-radius: 3px;
+}
+
+.field-input {
+    float: left;
+    width: 60%;
+    height: 48px;
+}
+
+#edit-story .field-input {
+    width: 80%;
+}
+
+.button-action {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #26A77A;
+    border-radius: 2px;
+    color: white;
+}
+
+.button-cancel {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #DC5450;
+    border-radius: 2px;
+    color: white;
+}
+
+.button-action:hover {
+    background: #32AF85;
+}
+
+.button-cancel:hover {
+    background: #EE7F7C;
+}
+
+.textarea-label + textarea {
+    border: 1px solid #F0F0F0;
+    outline: none;
+    resize: none;
+}
+
+#edit-story textarea {
+    height: 10em;
+}
+
+#edit-story span {
+    float: left;
+    display: block;
+    padding-left: 2px;
+}
+
+#edit-story .subgroup-right,
+#confirm-story .subgroup-right,
+#edit-story .subgroup-left,
+#confirm-story .subgroup-left {
+    float: left;
+    padding: 0;
+    width: 48%;
+    margin: 1%;
+}
+
+#preview {
+    border-bottom: 0;
+}
+
+#confirm-story {
+    padding: 0px 25px 18px 45px;
+    background: white;
+}
+
+#forgot-password {
+    float: left;
+    width: 48.5%;
+    margin-right: 1.5%;
+}
+
+#new-user {
+    float: left;
+    width: 48.5%;
+    margin-left: 1.5%;
+}
+
+#logo-register {
+    position: absolute;
+    margin-left: -5px;
+    margin-top: 15px;
+}
+
+#logo-login {
+    float: right;
+    margin-top: 15px;
+    margin-right: -5px;
+}
+
+
+/****************************************************************************
+ ************************* ESTILOS PÁGINA COMENTARIOS ***********************
+ ****************************************************************************/
+
+#comments-list,
+#comments-add {
+    margin: 0 0 0 -45px;
+}
+
+#comments-list > h3,
+#comments-add > h3 {
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: #FCFDFD;
+    margin: 15px -15px 0;
+    padding: 12px 15px;
+    border-top: 1px solid #E4ECEF;
+    border-bottom: 1px solid #E4ECEF;
+}
+
+.comment,
+#submit-wrapper {
+    font-size: 0.9em;
+    margin: 20px 0 0 0;
+    position: relative;
+}
+
+.commenter-avatar {
+    position: absolute;
+    width: 50px;
+}
+
+.comment-content-wraper {
+    position: relative;
+    margin-left: 63px;
+}
+
+.comment-content-wraper:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    border: 8px solid;
+    border-color: transparent #E4ECEF transparent transparent;
+}
+
+.comment-header {
+    padding: 12px;
+    background: #FAFBFC;
+    border: 1px solid #E4ECEF;
+}
+
+.comment-author {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-edit-icon {
+    float: right;
+    color: #67A0FF;
+}
+
+.comment-edit-icon:hover {
+    cursor: pointer;
+    color: #636E75;
+}
+
+.comment-content {
+    padding: 12px;
+    background: #EEF5F7;
+}
+
+.edit-comment-form,
+#add-comment-form {
+    max-width: none;
+    margin: 0;
+    border: none;
+}
+
+#add-comment-form {
+    float: right;
+    width: calc(100% - 60px);
+    height: auto;
+}
+
+.edit-comment-form label,
+.edit-comment-form input,
+#add-comment-form label {
+    display: none;
+}
+
+.edit-comment-form textarea {
+    height: 8em;
+    display: none;
+    padding: 12px;
+    border: 0;
+    box-shadow: none;
+    background: #EEF5F7;
+}
+
+#add-comment-form .subgroup-right {
+    float: right;
+    margin: 15px 0;
+}
+
+
+/* Intento número 1 de hacer la web responsible. */
+
+@media only screen and (max-width: 320px) {
+    #publicar {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .entry-thumb {
+        display: none;
+    }
+    .field-label,
+    #textarea-label {
+        text-transform: uppercase;
+        float: none;
+        display: block;
+        width: auto;
+        border: none;
+        background: transparent;
+    }
+    .field-input {
+        width: 100%;
+    }
+    .subgroup-left {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /* Cuando la pantalla es demasiado pequeña, solo mostraremos las historias. El aside lo ocultamos. */
+    main {
+        width: 100%;
+    }
+    aside {
+        display: none;
+    }
+    .content-header-title,
+    .entry-submitter-info,
+    .entry-title,
+    .entry-body {
+        font-size: 0.8em;
+    }
+    #forgot-password {
+        float: left;
+        width: 100%;
+    }
+    #new-user {
+        float: left;
+        width: 100%;
+        margin-top: 15px;
+        margin-left: 0;
+    }
+    .content-wrap {
+        margin: 15px 5px 0px 5px;
+    }
+    #logo-register,
+    #logo-login {
+        width: 320px;
+        height: auto;
+    }
+}
+
+
+/* <-- AQUÍ ACABAN MIS ESTILOS. */
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}

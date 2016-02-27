@@ -1,0 +1,133 @@
+<script src="../../js/jquery-2.2.1.min.js"></script>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-slider/paper-slider.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../heatmap-element/heatmap-element.html">
+<link rel="import" href="../my-form/my-form.html">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--------------------------------------------------------------------------->
+<link rel="import" href="../paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../neon-animation/neon-animated-pages.html">
+<link rel="import" href="../google-map/google-map.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<dom-module id="hackaton-app">
+	<style>
+		:host {}
+		
+		paper-tabs {
+			width: 100%;
+			color: #DEE5EF;
+			background: #1B1E1F;
+			--paper-tabs-selection-bar-color: #D74440;
+		}
+	</style>
+	<template>
+		<paper-tabs id="tabs" selected="{{selected}}" class="bottom self-end">
+			<paper-tab>Mapa</paper-tab>
+			<paper-tab>Añadir Incidencia</paper-tab>
+		</paper-tabs>
+		<neon-animated-pages id="pages" selected="{{selected}}">
+			<heatmap-element id="heatMap"></heatmap-element>
+			<my-form></my-form>
+		</neon-animated-pages>
+		<iron-ajax auto url="http://localhost:8080/JsonRest/rest/json/fooInstance/get" handle-as="json" on-response="handleResponse"></iron-ajax>
+
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: "hackaton-app",
+		properties: {},
+		handleResponse: function () {
+			var heatMap = document.querySelector("heatmap-element");
+			heatMap.data = event.detail.response;
+			console.log(heeatMap.data);
+		},
+		ready: function () {
+			this.$.tabs.selected = 0;
+			this.$.heatMap.style.height = (window.innerHeight - 48) + "px";
+			this.$.heatMap.style.width = (window.innerWidth) + "px"
+				/*			var json = {
+								"data": [
+									{
+										"nombre": {
+											"type": "literal",
+											"value": "pelea"
+										},
+										"geo_long": {
+											"type": "typed-literal",
+											"value": "-6.369283"
+										},
+										"geo_lat": {
+											"type": "typed-literal",
+											"value": "39.469226"
+										}
+				                    },
+									{
+										"nombre": {
+											"type": "literal",
+											"value": "alcohol"
+										},
+										"geo_long": {
+											"type": "typed-literal",
+											"value": "-6.380710"
+										},
+										"geo_lat": {
+											"type": "typed-literal",
+											"value": "39.467133"
+										}
+				                    },
+									{
+										"nombre": {
+											"type": "literal",
+											"value": "ladron"
+										},
+										"geo_long": {
+											"type": "typed-literal",
+											"value": "-6.378924"
+										},
+										"geo_lat": {
+											"type": "typed-literal",
+											"value": "39.469883"
+										}
+				                    },
+									{
+										"nombre": {
+											"type": "literal",
+											"value": "grupo_conflictivo"
+										},
+										"geo_long": {
+											"type": "typed-literal",
+											"value": "-6.375391"
+										},
+										"geo_lat": {
+											"type": "typed-literal",
+											"value": "39.468570"
+										}
+				                    },
+									{
+										"nombre": {
+											"type": "literal",
+											"value": "obra"
+										},
+										"geo_long": {
+											"type": "typed-literal",
+											"value": "-6.369761"
+										},
+										"geo_lat": {
+											"type": "typed-literal",
+											"value": "39.467755"
+										}
+				                    }
+				                          ]
+							};*/
+
+		}
+	});
+</script>

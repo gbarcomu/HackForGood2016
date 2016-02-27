@@ -1,0 +1,138 @@
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/google-map/google-map-directions.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-label/iron-label.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../../bower_components/input-location/input-location.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/input-location/input-location.html">
+
+<dom-module id="heatmap-element">
+
+    <style>
+    :host {
+            width: 80%;
+            height: 250px;
+        }
+        
+        paper-card {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            z-index: 1;
+        }
+        
+        paper-tabs {
+            --paper-tabs-selection-bar-color: #0D47A1;
+            margin-top: 16px;
+        }
+        
+        paper-tab {
+            --paper-tab-ink: #BBDEFB;
+        }
+        /* Other styles that make things more pleasant.
+       These could instead be added in styles.css since they
+       do not use any Polymer styling features. */
+        
+        paper-tab iron-icon {
+            margin-right: 10px;
+        }
+        
+        paper-tab.iron-selected {
+            background: rgb(66, 133, 244);
+            color: white;
+        }
+    }
+    </style>
+    <template is="dom-binding">
+        <google-map map="{{map}}" id='map' latitude="39.468347" longitude="-6.379224" libraries="visualization" on-google-map-ready="_mapLoaded">
+            <template is="dom-repeat" items="{{data}}">
+                <google-map-marker on-google-map-marker-click="markerClicked" latitude="{{item.geo_lat.value}}" longitude="{{item.geo_long.value}}" title="{{item.nombre.value}}" icon="../../images/{{item.nombre.value}}.png">{{item.nombre.value}}</google-map-marker>
+            </template>
+        </google-map>
+        <google-map-directions map="{{map}}" start-address="{{start}}" end-address="{{end}}" id="directions"></google-map-directions>
+
+        <paper-card elevation="2">
+            <paper-icon-item>
+                <iron-icon icon="search" item-icon></iron-icon>
+                <input-location id="origin-input" label="Start address" value="{{start}}"></input-location>
+            </paper-icon-item>
+            <paper-icon-item>
+                <iron-icon icon="search" item-icon></iron-icon>
+                <input-location id="destination-input" label="End address" value="{{end}}"></input-location>
+            </paper-icon-item>
+
+            <!--<paper-tabs selected="0">
+    <paper-tab>
+        <iron-icon icon="maps:directions-car"></iron-icon>
+        <span>DRIVING</span>
+    </paper-tab>
+    <paper-tab>
+        <iron-icon icon="maps:directions-walk"></iron-icon>
+        <span>WALKING</span>
+    </paper-tab>
+    <paper-tab>
+        <iron-icon icon="maps:directions-bike"></iron-icon>
+        <span>BICYCLING</span>
+    </paper-tab>
+    <paper-tab>
+        <iron-icon icon="maps:directions-transit"></iron-icon>
+        <span>TRANSIT</span>
+    </paper-tab>
+</paper-tabs>-->
+        </paper-card>
+    </template>
+
+    <script>
+        // element registration
+        Polymer({
+            is: "heatmap-element",
+
+            properties: {
+                data: {
+                    type: Array,
+                    value: new Array()
+                },
+                directionService: Object,
+                directionsDisplay: Object,
+                heatmap: Object
+            },
+            handleHeat: function () {
+                var spotData = [];
+                var arrayLength = this.data.length;
+                for (var i = 0; i < arrayLength; i++) {
+                    spotData.push(new google.maps.LatLng(this.data[i].geo_lat.value, this.data[i].geo_long.value));
+                }
+                var pointArray = new google.maps.MVCArray(spotData);
+                this.heatmap.setData(pointArray);
+                this.$.directions.threatLocations = this.data;
+            },
+            setAutocomplete: function () {
+                var map = this.$.map.map;
+                var origin_input = document.getElementById('origin-input');
+                var destination_input = document.getElementById('destination-input');
+                var origin_autocomplete = new google.maps.places.Autocomplete(origin_input.value);
+                origin_autocomplete.bindTo('bounds', map);
+                var destination_autocomplete =
+                    new google.maps.places.Autocomplete(destination_input.value);
+                destination_autocomplete.bindTo('bounds', map);
+
+            },
+            _mapLoaded: function () {
+                var map = this.$.map.map;
+                map.zoom = 13;
+                this.heatmap = new google.maps.visualization.HeatmapLayer({
+                    data: []
+                });
+                this.heatmap.setMap(map);
+                this.handleHeat();
+                this.setAutocomplete();
+            },
+            ready: function () {}
+        });
+    </script>
+
+</dom-module>
